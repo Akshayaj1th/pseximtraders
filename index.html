@@ -1,0 +1,354 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>PS EXIM TRADERS | Merchant Exporter</title>
+
+  <!-- Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+  <!-- Three.js -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+
+  <style>
+    :root {
+      --primary: #1a4d2e;
+      --accent: #c9a24d;
+      --dark: #222;
+      --light: #f7f7f7;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: "Segoe UI", sans-serif;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    /* ===== HEADER ===== */
+    header {
+      position: sticky;
+      top: 0;
+      background: #fff;
+      padding: 15px 8%;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      z-index: 1000;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      font-weight: 800;
+      font-size: 24px;
+      color: var(--primary);
+    }
+
+    nav ul {
+      list-style: none;
+      display: flex;
+      gap: 20px;
+    }
+
+    nav a {
+      text-decoration: none;
+      font-weight: 600;
+      color: var(--dark);
+      padding: 6px 14px;
+      border-radius: 4px;
+      transition: 0.3s;
+    }
+
+    nav a:hover {
+      background: var(--primary);
+      color: white;
+    }
+
+    /* ===== HERO ===== */
+    .hero {
+      min-height: 80vh;
+      display: flex;
+      align-items: center;
+      padding: 0 8%;
+      background: linear-gradient(rgba(0,0,0,.6), rgba(0,0,0,.6)),
+      url("https://images.unsplash.com/photo-1578575437130-527eed3abbec") center/cover;
+      color: white;
+    }
+
+    .hero h1 {
+      font-size: 48px;
+      margin-bottom: 15px;
+    }
+
+    .hero p {
+      max-width: 600px;
+      font-size: 18px;
+      margin-bottom: 25px;
+      color: #eee;
+    }
+
+    .btn {
+      padding: 14px 28px;
+      border-radius: 5px;
+      text-decoration: none;
+      font-weight: 700;
+      margin-right: 12px;
+      display: inline-block;
+    }
+
+    .btn-primary {
+      background: var(--primary);
+      color: white;
+    }
+
+    .btn-outline {
+      border: 2px solid white;
+      color: white;
+    }
+
+    /* ===== SECTION ===== */
+    section {
+      padding: 80px 8%;
+    }
+
+    .section-title {
+      text-align: center;
+      margin-bottom: 50px;
+    }
+
+    .section-title h2 {
+      font-size: 34px;
+      color: var(--primary);
+      text-transform: uppercase;
+    }
+
+    /* ===== ABOUT ===== */
+    #globe-container {
+      width: 300px;
+      height: 300px;
+      margin: 0 auto 30px;
+    }
+
+    .about-text {
+      max-width: 850px;
+      margin: auto;
+      text-align: center;
+      font-size: 18px;
+      line-height: 1.8;
+      color: #444;
+    }
+
+    /* ===== PRODUCTS ===== */
+    .products {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 35px;
+    }
+
+    .product-card {
+      background: white;
+      border-radius: 14px;
+      overflow: hidden;
+      box-shadow: 0 10px 25px rgba(0,0,0,0.08);
+      transition: 0.4s;
+    }
+
+    .product-card:hover {
+      transform: translateY(-10px);
+      box-shadow: 0 18px 40px rgba(0,0,0,0.15);
+    }
+
+    .product-card img {
+      width: 100%;
+      height: 240px;
+      object-fit: cover;
+    }
+
+    .product-info {
+      padding: 25px;
+      text-align: center;
+    }
+
+    .product-info h3 {
+      color: var(--primary);
+      margin-bottom: 10px;
+    }
+
+    .tag {
+      display: inline-block;
+      background: var(--accent);
+      color: white;
+      padding: 6px 14px;
+      border-radius: 20px;
+      font-size: 12px;
+      font-weight: 600;
+    }
+
+    /* ===== FOOTER ===== */
+    footer {
+      background: #111;
+      color: white;
+      text-align: center;
+      padding: 60px 8% 30px;
+    }
+
+    footer p {
+      margin-bottom: 10px;
+      color: #ccc;
+    }
+
+    .whatsapp {
+      position: fixed;
+      right: 20px;
+      bottom: 20px;
+      width: 60px;
+      height: 60px;
+      background: #25d366;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 30px;
+      color: white;
+      z-index: 1000;
+    }
+
+    @media(max-width:768px){
+      .hero h1 { font-size: 34px; }
+      header { flex-direction: column; gap: 15px; }
+    }
+  </style>
+</head>
+
+<body>
+
+<header>
+  <div class="brand">PS EXIM TRADERS</div>
+  <nav>
+    <ul>
+      <li><a href="#">Home</a></li>
+      <li><a href="#about">About</a></li>
+      <li><a href="#products">Products</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+  </nav>
+</header>
+
+<section class="hero">
+  <div>
+    <h1>Global Merchant Exporter</h1>
+    <p>Supplying premium agricultural and food commodities worldwide with quality, compliance, and trust.</p>
+    <a href="#contact" class="btn btn-primary">Get a Quote</a>
+    <a href="#products" class="btn btn-outline">Our Products</a>
+  </div>
+</section>
+
+<section id="about">
+  <div class="section-title">
+    <h2>About Us</h2>
+  </div>
+
+  <div id="globe-container"></div>
+
+  <p class="about-text">
+    PS EXIM TRADERS is a merchant exporter based in India, specializing in sourcing
+    high-quality agricultural commodities as per client requirements.
+    We work directly with trusted suppliers to ensure export-grade quality,
+    competitive pricing, and global compliance.
+  </p>
+</section>
+
+<section id="products" style="background: var(--light);">
+  <div class="section-title">
+    <h2>Products & Custom Sourcing</h2>
+  </div>
+
+  <div class="products">
+    <div class="product-card">
+      <img src="https://images.unsplash.com/photo-1604908177225-44d9e2ccff5f">
+      <div class="product-info">
+        <h3>Cashew Nuts</h3>
+        <p>W180 • W240 • W320</p>
+        <span class="tag">Export Grade</span>
+      </div>
+    </div>
+
+    <div class="product-card">
+      <img src="https://images.unsplash.com/photo-1615485290382-441e4d049cb5">
+      <div class="product-info">
+        <h3>Black Pepper</h3>
+        <p>Bold aroma & high pungency</p>
+        <span class="tag">Spices</span>
+      </div>
+    </div>
+
+    <div class="product-card">
+      <img src="https://images.unsplash.com/photo-1607082349566-1870a3a8f6a0">
+      <div class="product-info">
+        <h3>Custom Sourcing</h3>
+        <p>Products sourced as per buyer specification</p>
+        <span class="tag">On Request</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer id="contact">
+  <h2>Contact Us</h2>
+  <p>📞 +91 8086190827</p>
+  <p>📧 pseximtraders@gmail.com</p>
+  <p>📍 Kerala, India</p>
+  <p style="margin-top:20px; font-size:14px;">© 2026 PS EXIM TRADERS</p>
+</footer>
+
+<a href="https://wa.me/918086190827" class="whatsapp">
+  <i class="fab fa-whatsapp"></i>
+</a>
+
+<script>
+document.addEventListener("DOMContentLoaded", () => {
+  const container = document.getElementById("globe-container");
+  const scene = new THREE.Scene();
+
+  const camera = new THREE.PerspectiveCamera(
+    45,
+    container.clientWidth / container.clientHeight,
+    0.1,
+    1000
+  );
+  camera.position.z = 4;
+
+  const renderer = new THREE.WebGLRenderer({ alpha: true, antialias: true });
+  renderer.setSize(container.clientWidth, container.clientHeight);
+  container.appendChild(renderer.domElement);
+
+  const globe = new THREE.Mesh(
+    new THREE.SphereGeometry(1.5, 64, 64),
+    new THREE.MeshPhongMaterial({
+      map: new THREE.TextureLoader().load(
+        "https://threejs.org/examples/textures/planets/earth_atmos_2048.jpg"
+      )
+    })
+  );
+
+  scene.add(globe);
+  scene.add(new THREE.AmbientLight(0xffffff, 0.7));
+
+  function animate() {
+    requestAnimationFrame(animate);
+    globe.rotation.y += 0.002;
+    renderer.render(scene, camera);
+  }
+
+  animate();
+});
+</script>
+
+</body>
+</html>
